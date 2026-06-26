@@ -6,7 +6,7 @@
 | 2 | Temp/Humidity     | DHT22                                | ~15 × 15mm        | 1   |
 | 3 | AC/DC             | BRIMETi LED Transformer 24V/1A       | 93 × 30 × 20mm    | 1   |
 | 4 | Step-down         | MP1584EN (24V → 5V)                  | ~22 × 17mm        | 1   |
-| 5 | Relay module      | SRD-05VDC-SL-C, 1ch, 5V, 10A/250VAC | ~50 × 26mm        | 1   |
+| 5 | Relay module      | SRD-05VDC-SL-C, 1ch, 5V, 10A/250VAC | 50 × 26 × 16mm    | 1   |
 | 6 | Valve             | 24VDC NC solenoid valve              | External           | 1   |
 
 ## Notes
