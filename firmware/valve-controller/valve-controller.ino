@@ -14,6 +14,7 @@
 #define VPIN_TEMP       V0
 #define VPIN_HUMIDITY   V1
 #define VPIN_VALVE      V2   // valve status (display)
+#define VPIN_STATUS     V14  // statusrad
 #define VPIN_WATER_NOW  V3   // button: open valve until stopped
 #define VPIN_DURATION   V4   // slider: minutes (1-60)
 #define VPIN_WATER_TIMED V5  // button: water for selected duration
@@ -72,6 +73,16 @@ void sendSensorData() {
 
   Blynk.virtualWrite(VPIN_TEMP,     temp);
   Blynk.virtualWrite(VPIN_HUMIDITY, hum);
+
+  // Statusrad
+  char status[64];
+  unsigned long upSec = millis() / 1000;
+  int rssi = WiFi.RSSI();
+  snprintf(status, sizeof(status), "OK | Ventil:%s | Up:%luh | WiFi:%ddBm",
+           valveOpen ? "öppen" : "stängd",
+           upSec / 3600,
+           rssi);
+  Blynk.virtualWrite(VPIN_STATUS, status);
 }
 
 void setup() {

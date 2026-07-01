@@ -24,6 +24,7 @@
 #define VPIN_LIGHT          V10
 #define VPIN_NUTRIENTS      V11
 #define VPIN_BATTERY        V12
+#define VPIN_STATUS         V13
 
 // Mi Flora BLE UUIDs
 static BLEUUID serviceUUID("00001204-0000-1000-8000-00805f9b34fb");
@@ -136,6 +137,15 @@ void setup() {
     Blynk.virtualWrite(VPIN_LIGHT,         flora.light);
     Blynk.virtualWrite(VPIN_NUTRIENTS,     flora.conductivity);
   }
+
+  // Statusrad
+  char status[64];
+  int rssi = WiFi.RSSI();
+  time_t now = time(nullptr);
+  struct tm* t = localtime(&now);
+  snprintf(status, sizeof(status), "OK %02d:%02d | Bat:%.0f%% | WiFi:%ddBm",
+           t->tm_hour, t->tm_min, battery, rssi);
+  Blynk.virtualWrite(VPIN_STATUS, status);
 
   Blynk.run();
   delay(1000);
